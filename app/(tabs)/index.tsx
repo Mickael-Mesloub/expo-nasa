@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { Button, Card, Text } from 'react-native-paper';
 
 export default function Index() {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <Card>
         <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
         <Card.Title
-          title="Card Title"
+          title={t('hello')}
           subtitle="Card Subtitle"
           titleVariant="titleLarge"
         />

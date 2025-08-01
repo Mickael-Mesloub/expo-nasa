@@ -10,6 +10,7 @@ import { PaperProvider, Text } from 'react-native-paper';
 import { fonts as fontConfig } from '@/lib/theme/fonts';
 import { CombinedDarkTheme, CombinedLightTheme } from '@/lib/theme/theme';
 import Colors from '@/constants/Colors';
+import '@/lib/i18n';
 
 export {
   // Catch any errors thrown by the Layout component.
