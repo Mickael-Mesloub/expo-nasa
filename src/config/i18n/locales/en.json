@@ -1,0 +1,14 @@
+{
+  "hello": "Hello",
+
+  "BottomTabBar": {
+    "tabOne": "Home",
+    "tabTwo": "Gallery"
+  },
+
+  "Screens": {
+    "HomeScreen": {
+      "title": "Home"
+    }
+  }
+}
