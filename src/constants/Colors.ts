@@ -66,11 +66,11 @@ export default {
 
     surface: 'rgb(27, 27, 31)',
     onSurface: 'rgb(228, 225, 230)',
-    surfaceVariant: 'rgb(70, 70, 79)',
+    surfaceVariant: 'rgb(35,35,39)',
     onSurfaceVariant: 'rgb(199, 197, 208)',
 
     outline: 'rgb(144, 144, 154)',
-    outlineVariant: 'rgb(70, 70, 79)',
+    outlineVariant: 'rgb(35,35,39)',
     shadow: 'rgb(0, 0, 0)',
     scrim: 'rgb(0, 0, 0)',
     inverseSurface: 'rgb(228, 225, 230)',
@@ -89,5 +89,10 @@ export default {
     surfaceDisabled: 'rgba(228, 225, 230, 0.12)',
     onSurfaceDisabled: 'rgba(228, 225, 230, 0.38)',
     backdrop: 'rgba(47, 48, 56, 0.4)',
+  },
+
+  common: {
+    black: 'rgb(0,0,0)',
+    white: 'rgb(255, 251, 255)',
   },
 };

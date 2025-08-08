@@ -14,6 +14,7 @@ import {
 } from '@/src/config/theme/theme';
 import Colors from '@/src/constants/Colors';
 import '@/src/config/i18n';
+import { isDarkMode } from '@/src/utils/theme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -67,8 +68,9 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-  const paperTheme =
-    colorScheme === 'dark' ? CombinedDarkTheme : CombinedLightTheme;
+  const paperTheme = isDarkMode(colorScheme)
+    ? CombinedDarkTheme
+    : CombinedLightTheme;
 
   return (
     <PaperProvider theme={{ ...paperTheme, fonts: fontConfig }}>
