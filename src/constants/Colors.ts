@@ -15,12 +15,12 @@ export default {
     errorContainer: 'rgb(255, 218, 214)',
     onErrorContainer: 'rgb(65, 0, 2)',
 
-    background: 'rgb(255, 251, 255)',
+    background: 'rgb(245,245,245)',
     onBackground: 'rgb(27, 27, 31)',
 
-    surface: 'rgb(255, 251, 255)',
+    surface: 'rgb(245,245,245)',
     onSurface: 'rgb(27, 27, 31)',
-    surfaceVariant: 'rgb(227, 225, 236)',
+    surfaceVariant: 'rgb(235,235,235)',
     onSurfaceVariant: 'rgb(70, 70, 79)',
 
     outline: 'rgb(119, 118, 128)',
@@ -61,10 +61,10 @@ export default {
     errorContainer: 'rgb(147, 0, 10)',
     onErrorContainer: 'rgb(255, 180, 171)',
 
-    background: 'rgb(27, 27, 31)',
+    background: 'rgb(12,12,12)',
     onBackground: 'rgb(228, 225, 230)',
 
-    surface: 'rgb(27, 27, 31)',
+    surface: 'rgb(12,12,12)',
     onSurface: 'rgb(228, 225, 230)',
     surfaceVariant: 'rgb(35,35,39)',
     onSurfaceVariant: 'rgb(199, 197, 208)',
@@ -94,5 +94,6 @@ export default {
   common: {
     black: 'rgb(0,0,0)',
     white: 'rgb(255, 251, 255)',
+    polaroidBoxShadow: '0 4px 8px 4px rgba(0, 0, 0, 0.3)',
   },
 };

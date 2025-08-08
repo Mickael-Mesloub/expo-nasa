@@ -1,7 +1,14 @@
 import Colors from '@/src/constants/Colors';
 import Spacings from '@/src/constants/Spacings';
 import { Image } from 'expo-image';
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import {
+  ColorSchemeName,
+  StyleSheet,
+  useColorScheme,
+  useWindowDimensions,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { Text } from 'react-native-paper';
 
 interface PolaroidProps {
@@ -11,10 +18,17 @@ interface PolaroidProps {
 }
 
 export default function Polaroid({ title, date, imageUrl }: PolaroidProps) {
-  const { height } = useWindowDimensions();
+  const { height: windowH } = useWindowDimensions();
+  const colorScheme: ColorSchemeName = useColorScheme();
+  const polaroidBgColor: string = Colors[colorScheme ?? 'light'].surfaceVariant;
+  const polaroidMaxHeight: number = windowH / 1.8;
+  const polaroidContainerStyle: ViewStyle = {
+    backgroundColor: polaroidBgColor,
+    maxHeight: polaroidMaxHeight,
+  };
 
   return (
-    <View style={[styles.container, { maxHeight: height / 1.8 }]}>
+    <View style={[styles.container, polaroidContainerStyle]}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={imageUrl} />
       </View>
@@ -36,14 +50,7 @@ const styles = StyleSheet.create({
     padding: Spacings.xlg,
     borderWidth: 1,
     borderColor: 'transparent',
-    shadowColor: Colors.common.black,
-    shadowOffset: {
-      height: Spacings.xs,
-      width: Spacings.xs,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: Spacings.xxs,
-    elevation: Spacings.xxs,
+    boxShadow: Colors.common.polaroidBoxShadow,
   },
 
   imageContainer: {
