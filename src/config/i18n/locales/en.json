@@ -8,7 +8,9 @@
 
   "Screens": {
     "HomeScreen": {
-      "title": "Home"
+      "todaysPictureSection": {
+        "title": "Today's picture"
+      }
     }
   }
 }

@@ -1,6 +1,4 @@
 {
-  "hello": "Bonjour",
-
   "BottomTabBar": {
     "tabOne": "Accueil",
     "tabTwo": "Galerie"
@@ -8,7 +6,9 @@
 
   "Screens": {
     "HomeScreen": {
-      "title": "Accueil"
+      "todaysPictureSection": {
+        "title": "Photo du jour"
+      }
     }
   }
 }
