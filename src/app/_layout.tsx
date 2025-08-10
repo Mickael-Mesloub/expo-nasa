@@ -5,16 +5,15 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { useColorScheme } from '@/src/components/useColorScheme';
 import { PaperProvider, Text } from 'react-native-paper';
 import { fonts as fontConfig } from '@/src/config/theme/fonts';
 import {
   CombinedDarkTheme,
   CombinedLightTheme,
 } from '@/src/config/theme/theme';
-import Colors from '@/src/constants/Colors';
 import '@/src/config/i18n';
-import { isDarkMode } from '@/src/utils/theme';
+import { isDarkMode } from '@/src/utils/theme.utils';
+import { useGetTheme } from '@/src/hooks/useGetTheme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -67,7 +66,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+  const { colorScheme, theme } = useGetTheme();
   const paperTheme = isDarkMode(colorScheme)
     ? CombinedDarkTheme
     : CombinedLightTheme;
@@ -84,8 +83,7 @@ function RootLayoutNav() {
               presentation: 'modal',
               headerTitle: () => <Text variant="titleLarge">Modal</Text>,
               headerStyle: {
-                backgroundColor:
-                  Colors[colorScheme ?? 'light'].secondaryContainer,
+                backgroundColor: theme.secondaryContainer,
               },
             }}
           />

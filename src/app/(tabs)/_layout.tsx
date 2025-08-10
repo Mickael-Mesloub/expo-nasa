@@ -1,12 +1,11 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import Colors from '@/src/constants/Colors';
-import { useColorScheme } from '@/src/components/useColorScheme';
 import { useClientOnlyValue } from '@/src/components/useClientOnlyValue';
 import { Text } from 'react-native-paper';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useTranslation } from 'react-i18next';
 import { PlatformPressable } from '@react-navigation/elements';
+import { useGetTheme } from '@/src/hooks/useGetTheme';
 
 interface TabBarIconProps {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
@@ -19,18 +18,18 @@ const TabBarIcon = (props: TabBarIconProps) => {
 };
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { theme } = useGetTheme();
   const { t } = useTranslation();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
+        tabBarActiveTintColor: theme.primary,
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
         headerStyle: {
-          backgroundColor: Colors[colorScheme ?? 'light'].secondaryContainer,
+          backgroundColor: theme.secondaryContainer,
         },
         tabBarStyle: {
           paddingTop: 5,

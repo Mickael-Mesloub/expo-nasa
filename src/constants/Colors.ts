@@ -15,12 +15,12 @@ export default {
     errorContainer: 'rgb(255, 218, 214)',
     onErrorContainer: 'rgb(65, 0, 2)',
 
-    background: 'rgb(245,245,245)',
+    background: 'rgb(235,235,235)',
     onBackground: 'rgb(27, 27, 31)',
 
-    surface: 'rgb(245,245,245)',
+    surface: 'rgb(235,235,235)',
     onSurface: 'rgb(27, 27, 31)',
-    surfaceVariant: 'rgb(235,235,235)',
+    surfaceVariant: 'rgb(248,248,248)',
     onSurfaceVariant: 'rgb(70, 70, 79)',
 
     outline: 'rgb(119, 118, 128)',
@@ -94,6 +94,6 @@ export default {
   common: {
     black: 'rgb(0,0,0)',
     white: 'rgb(255, 251, 255)',
-    polaroidBoxShadow: '0 4px 8px 4px rgba(0, 0, 0, 0.3)',
+    boxShadowSm: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   },
 };
