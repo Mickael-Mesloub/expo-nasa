@@ -4,11 +4,13 @@ import { useGetTheme } from '@/src/hooks/useGetTheme';
 import { Alert, StyleSheet, View } from 'react-native';
 import { IconButton, Text } from 'react-native-paper';
 
-interface TodaysPictureSectionHeaderProps {
+interface DailyPictureSectionHeaderProps {
   title: string;
 }
 
-export default function ({ title }: TodaysPictureSectionHeaderProps) {
+export default function DailyPictureSectionHeader({
+  title,
+}: DailyPictureSectionHeaderProps) {
   const { theme } = useGetTheme();
   const iconColor: string = theme.primary;
   const iconContainerColor: string = theme.primaryContainer;

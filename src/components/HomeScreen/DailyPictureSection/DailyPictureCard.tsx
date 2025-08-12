@@ -3,13 +3,17 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { Image } from 'expo-image';
 
-interface TodaysPictureDataProps {
+interface DailyPictureCardProps {
   title: string;
   date: string;
   imageUrl: string;
 }
 
-export default function ({ title, date, imageUrl }: TodaysPictureDataProps) {
+export default function DailyPictureCard({
+  title,
+  date,
+  imageUrl,
+}: DailyPictureCardProps) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>

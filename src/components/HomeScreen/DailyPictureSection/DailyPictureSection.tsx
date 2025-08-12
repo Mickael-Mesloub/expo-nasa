@@ -2,10 +2,10 @@ import Colors from '@/src/constants/Colors';
 import Spacings from '@/src/constants/Spacings';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
-import TodaysPictureSectionHeader from '@/src/components/HomeScreen/TodaysPictureSection/TodaysPictureSectionHeader';
-import TodaysPictureData from '@/src/components/HomeScreen/TodaysPictureSection/TodaysPictureData';
 import imageUrl from '@/src/assets/images/cosmos.jpg';
 import { useGetTheme } from '@/src/hooks/useGetTheme';
+import DailyPictureSectionHeader from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureSectionHeader';
+import DailyPictureCard from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureCard';
 
 // TODO: replace mock type and data with real data from Nasa APOD API data
 type MockPictureDataType = {
@@ -21,23 +21,23 @@ const mockPictureData: MockPictureDataType = {
   imageUrl,
 };
 
-export default function () {
+export default function DailyPictureSection() {
   const { t } = useTranslation(undefined, {
-    keyPrefix: 'Screens.HomeScreen.todaysPictureSection',
+    keyPrefix: 'Screens.HomeScreen.dailyPictureSection',
   });
   const { height: windowH } = useWindowDimensions();
   const { theme } = useGetTheme();
-  const todaysPictureSectionBgColor: string = theme.surfaceVariant;
-  const todaysPictureSectionMaxHeight: number = windowH / 1.5;
-  const todaysPictureSectionContainerStyle: ViewStyle = {
-    backgroundColor: todaysPictureSectionBgColor,
-    maxHeight: todaysPictureSectionMaxHeight,
+  const dailyPictureSectionBgColor: string = theme.surfaceVariant;
+  const dailyPictureSectionMaxHeight: number = windowH / 1.5;
+  const dailyPictureSectionContainerStyle: ViewStyle = {
+    backgroundColor: dailyPictureSectionBgColor,
+    maxHeight: dailyPictureSectionMaxHeight,
   };
 
   return (
-    <View style={[styles.container, todaysPictureSectionContainerStyle]}>
-      <TodaysPictureSectionHeader title={t('title')} />
-      <TodaysPictureData
+    <View style={[styles.container, dailyPictureSectionContainerStyle]}>
+      <DailyPictureSectionHeader title={t('title')} />
+      <DailyPictureCard
         title={mockPictureData.title}
         date={mockPictureData.date}
         imageUrl={mockPictureData.imageUrl}

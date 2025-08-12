@@ -10,8 +10,7 @@ import logoLight from '@/src/assets/icons/splash-icon-light.png';
 import { isDarkMode } from '@/src/utils/theme.utils';
 import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Spacings from '@/src/constants/Spacings';
-import TodaysPictureSection from '@/src/components/HomeScreen/TodaysPictureSection/TodaysPictureSection';
+import DailyPictureSection from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureSection';
 
 export default function Index() {
   const { top }: EdgeInsets = useSafeAreaInsets();
@@ -25,7 +24,7 @@ export default function Index() {
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={logoSource} />
       </View>
-      <TodaysPictureSection />
+      <DailyPictureSection />
     </SafeAreaView>
   );
 }

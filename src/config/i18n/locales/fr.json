@@ -6,7 +6,7 @@
 
   "Screens": {
     "HomeScreen": {
-      "todaysPictureSection": {
+      "dailyPictureSection": {
         "title": "Photo du jour"
       }
     }
