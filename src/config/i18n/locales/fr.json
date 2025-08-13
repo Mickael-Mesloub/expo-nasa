@@ -1,0 +1,14 @@
+{
+  "BottomTabBar": {
+    "tabOne": "Accueil",
+    "tabTwo": "Galerie"
+  },
+
+  "Screens": {
+    "HomeScreen": {
+      "dailyPictureSection": {
+        "title": "Photo du jour"
+      }
+    }
+  }
+}

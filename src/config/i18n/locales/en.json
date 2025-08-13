@@ -1,0 +1,14 @@
+{
+  "BottomTabBar": {
+    "tabOne": "Home",
+    "tabTwo": "Gallery"
+  },
+
+  "Screens": {
+    "HomeScreen": {
+      "dailyPictureSection": {
+        "title": "Daily picture"
+      }
+    }
+  }
+}
