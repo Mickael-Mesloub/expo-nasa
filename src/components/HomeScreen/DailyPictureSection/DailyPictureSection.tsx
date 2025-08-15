@@ -6,6 +6,8 @@ import imageUrl from '@/src/assets/images/cosmos.jpg';
 import { useGetTheme } from '@/src/hooks/useGetTheme';
 import DailyPictureSectionHeader from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureSectionHeader';
 import DailyPictureCard from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureCard';
+import { useGetPictures } from '@/src/api/getPictures';
+import { ActivityIndicator, Text } from 'react-native-paper';
 
 // TODO: replace mock type and data with real data from Nasa APOD API data
 type MockPictureDataType = {
@@ -33,6 +35,42 @@ export default function DailyPictureSection() {
     backgroundColor: dailyPictureSectionBgColor,
     maxHeight: dailyPictureSectionMaxHeight,
   };
+
+  // API CALL
+  const {
+    data: pictureData,
+    error,
+    isFetching,
+  } = useGetPictures({ params: { count: '2' } });
+
+  if (isFetching)
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: theme.backdrop,
+          justifyContent: 'center',
+        }}
+      >
+        <ActivityIndicator
+          size="large"
+          animating={true}
+          color={theme.secondary}
+        />
+      </View>
+    );
+
+  if (error)
+    return (
+      <View style={{ flex: 1, backgroundColor: theme.errorContainer }}>
+        <Text variant="headlineLarge" style={{ color: theme.error }}>
+          {`An error occured : ${error.message}`}
+        </Text>
+      </View>
+    );
+
+  // TODO: REMOVE LOG WHEN NOT NEEDED ANYMORE
+  console.log('PICTURE DATA === ', pictureData);
 
   return (
     <View style={[styles.container, dailyPictureSectionContainerStyle]}>

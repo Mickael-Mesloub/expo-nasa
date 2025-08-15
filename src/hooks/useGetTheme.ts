@@ -1,4 +1,4 @@
-import { CommonColors, ThemeColors } from '@/src/@types/theme.type';
+import { CommonColors, ThemeColors } from '@/src/@types/theme.types';
 import { getTheme } from '@/src/utils/theme.utils';
 import { ColorSchemeName, useColorScheme } from 'react-native';
 
