@@ -5,7 +5,12 @@ import {
   QueryParamsKeysArray,
 } from '@/src/@types/query.types';
 
-// TODO: add JSDoc + tests
+/**
+ * Converts a `QueryParams` object into an array of its keys.
+ *
+ * @param {QueryParams | undefined} params - Optional query parameters object.
+ * @returns {QueryParamsKeysArray | undefined} An array of query parameter keys, or `undefined` if no params are provided.
+ */
 export const paramsToArray = (
   params: QueryParams | undefined,
 ): QueryParamsKeysArray | undefined => {
@@ -18,22 +23,40 @@ export const paramsToArray = (
   return paramsArray;
 };
 
-// TODO: add JSDoc + tests
+/**
+ * Determines the appropriate query key for fetching pictures
+ * based on the provided query parameters.
+ *
+ * @param {QueryParamsKeysArray | undefined} paramsArray - Array of query parameter keys, or `undefined` if no params were provided.
+ * @param {number} count - Optional number representing the "count" parameter.
+ * @returns {PicturesQueryKeyEnum} A `PicturesQueryKeyEnum` value indicating which type of picture query should be used.
+ */
 export const getQueryKey = (
   paramsArray: QueryParamsKeysArray | undefined,
-  count?: string,
+  count?: number,
 ): PicturesQueryKeyEnum => {
-  let queryKey: PicturesQueryKeyEnum;
-  const isSingleRandomPictures =
-    paramsArray?.includes('count') && count && count === '1';
-
   if (!paramsArray) {
-    queryKey = PicturesQueryKeyEnum.TODAYS_PICTURE;
-  } else if (paramsArray.includes('date') || isSingleRandomPictures) {
-    queryKey = PicturesQueryKeyEnum.SINGLE_PICTURE;
+    return PicturesQueryKeyEnum.TODAYS_PICTURE;
+  } else if (
+    paramsArray.includes('date') ||
+    isRandomSinglePictureQuery(paramsArray, count)
+  ) {
+    return PicturesQueryKeyEnum.SINGLE_PICTURE;
   } else {
-    queryKey = PicturesQueryKeyEnum.PICTURES;
+    return PicturesQueryKeyEnum.PICTURES;
   }
+};
 
-  return queryKey;
+/**
+ * Checks whether the query parameters represent a "random single picture" request.
+ *
+ * @param {QueryParamsKeysArray} paramsArray - Array of query parameter keys (must not be `undefined`).
+ * @param {number | undefined} count - Optional number representing the "count" parameter.
+ * @returns {boolean} `true` if the query requests exactly one random picture, otherwise `false`.
+ */
+const isRandomSinglePictureQuery = (
+  paramsArray: QueryParamsKeysArray,
+  count: number | undefined,
+): boolean => {
+  return paramsArray.includes('count') && count === 1;
 };

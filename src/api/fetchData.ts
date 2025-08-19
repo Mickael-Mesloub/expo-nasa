@@ -6,7 +6,9 @@ const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 // TODO: add JSDOC + handle errors better
 export async function fetchData<T>(params?: QueryParams): Promise<T> {
   const searchParams = params
-    ? `&${new URLSearchParams(params).toString()}&thumbs=true`
+    ? new URLSearchParams(
+        Object.entries(params).map(([k, v]) => [k, String(v)]),
+      ).toString()
     : '';
   const url = `${API_BASE_URL}?api_key=${API_KEY}${searchParams}`;
 

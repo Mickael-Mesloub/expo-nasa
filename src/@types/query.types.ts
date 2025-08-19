@@ -2,7 +2,7 @@ export type QueryParams = {
   date?: string;
   start_date?: string;
   end_date?: string;
-  count?: string;
+  count?: number;
 };
 
 export type QueryParamsKey = Extract<
