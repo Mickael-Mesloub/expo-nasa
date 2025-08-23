@@ -22,11 +22,6 @@ export {
   ErrorBoundary,
 } from 'expo-router';
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
   .then((result) =>
@@ -68,7 +63,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const { colorScheme, theme } = useGetTheme();
+  const { colorScheme } = useGetTheme();
   const paperTheme = isDarkMode(colorScheme)
     ? CombinedDarkTheme
     : CombinedLightTheme;

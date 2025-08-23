@@ -1,4 +1,3 @@
-import Colors from '@/src/constants/Colors';
 import Spacings from '@/src/constants/Spacings';
 import { useGetTheme } from '@/src/hooks/useGetTheme';
 import { Alert, StyleSheet, View } from 'react-native';
@@ -14,6 +13,7 @@ export default function DailyPictureSectionHeader({
   const { theme } = useGetTheme();
   const iconColor: string = theme.primary;
   const iconContainerColor: string = theme.primaryContainer;
+  const iconBoxShadow: string = theme.boxShadowSm;
 
   // TODO: add sharing feature when Share icon button is pressed
   const share = () =>
@@ -35,7 +35,7 @@ export default function DailyPictureSectionHeader({
         iconColor={iconColor}
         containerColor={iconContainerColor}
         onPress={share}
-        style={styles.iconButton}
+        style={{ boxShadow: iconBoxShadow }}
       />
     </View>
   );
@@ -47,9 +47,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingBottom: Spacings.sm,
-  },
-
-  iconButton: {
-    boxShadow: Colors.common.boxShadowSm,
   },
 });
