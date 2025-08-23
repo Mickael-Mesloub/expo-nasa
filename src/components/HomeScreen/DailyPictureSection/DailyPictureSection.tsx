@@ -1,96 +1,46 @@
-import Colors from '@/src/constants/Colors';
 import Spacings from '@/src/constants/Spacings';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
-import imageUrl from '@/src/assets/images/cosmos.jpg';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { useGetTheme } from '@/src/hooks/useGetTheme';
 import DailyPictureSectionHeader from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureSectionHeader';
 import DailyPictureCard from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureCard';
-import { useGetPictures } from '@/src/api/getPictures';
-import { ActivityIndicator, Text } from 'react-native-paper';
-
-// TODO: replace mock type and data with real data from Nasa APOD API data
-type MockPictureDataType = {
-  title: string;
-  date: string;
-  imageUrl: string;
-};
-
-const mockPictureData: MockPictureDataType = {
-  title:
-    'Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus',
-  date: new Date(Date.now()).toLocaleDateString(),
-  imageUrl,
-};
+import FullScreenLoader from '@/src/components/FullScreenLoader';
+import { useGetTodaysPicture } from '@/src/api/getTodaysPicture';
 
 export default function DailyPictureSection() {
   const { t } = useTranslation(undefined, {
     keyPrefix: 'Screens.HomeScreen.dailyPictureSection',
   });
-  const { height: windowH } = useWindowDimensions();
   const { theme } = useGetTheme();
-  const dailyPictureSectionBgColor: string = theme.surfaceVariant;
-  const dailyPictureSectionMaxHeight: number = windowH / 1.5;
+  const { data: todaysPictureData, isFetching } = useGetTodaysPicture();
+
   const dailyPictureSectionContainerStyle: ViewStyle = {
-    backgroundColor: dailyPictureSectionBgColor,
-    maxHeight: dailyPictureSectionMaxHeight,
+    boxShadow: theme.boxShadowSm,
+    backgroundColor: theme.surfaceVariant,
   };
 
-  // API CALL
-  const {
-    data: pictureData,
-    error,
-    isFetching,
-  } = useGetPictures({ params: { count: '2' } });
-
-  if (isFetching)
-    return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: theme.backdrop,
-          justifyContent: 'center',
-        }}
-      >
-        <ActivityIndicator
-          size="large"
-          animating={true}
-          color={theme.secondary}
-        />
-      </View>
-    );
-
-  if (error)
-    return (
-      <View style={{ flex: 1, backgroundColor: theme.errorContainer }}>
-        <Text variant="headlineLarge" style={{ color: theme.error }}>
-          {`An error occured : ${error.message}`}
-        </Text>
-      </View>
-    );
-
-  // TODO: REMOVE LOG WHEN NOT NEEDED ANYMORE
-  console.log('PICTURE DATA === ', pictureData);
+  if (!todaysPictureData) return null;
 
   return (
-    <View style={[styles.container, dailyPictureSectionContainerStyle]}>
-      <DailyPictureSectionHeader title={t('title')} />
-      <DailyPictureCard
-        title={mockPictureData.title}
-        date={mockPictureData.date}
-        imageUrl={mockPictureData.imageUrl}
-      />
-    </View>
+    <>
+      <View style={[styles.container, dailyPictureSectionContainerStyle]}>
+        <DailyPictureSectionHeader title={t('title')} />
+        <DailyPictureCard
+          title={todaysPictureData?.title}
+          date={todaysPictureData?.date}
+          imageUrl={todaysPictureData?.hdurl ?? todaysPictureData?.url}
+        />
+      </View>
+      <FullScreenLoader isLoading={isFetching} />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingVertical: Spacings.md,
     paddingHorizontal: Spacings.xlg,
     borderWidth: 1,
     borderColor: 'transparent',
-    boxShadow: Colors.common.boxShadowSm,
   },
 });

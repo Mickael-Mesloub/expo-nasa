@@ -1,28 +1,16 @@
-import {
-  PicturesQueryKeyEnum,
-  QueryParams,
-  QueryParamsKeysArray,
-} from '@/src/@types/query.types';
+import { QueryParams } from '@/src/@types/query.types';
 import { fetchData } from '@/src/api/fetchData';
 import { ExtractFnReturnType } from '@/src/api/tanstackQuery';
-import { PictureDTO } from '@/src/models/PictureDTO';
-import { getQueryKey, paramsToArray } from '@/src/utils/query.utils';
+import { PictureDTO } from '@/src/models/picture/PictureDTO';
+import { convertPictureDTOToEntity } from '@/src/models/picture/PictureEntity';
 import { useQuery } from '@tanstack/react-query';
 
-type GetPicturesFnType = (
-  params?: QueryParams,
-) => Promise<PictureDTO[] | undefined>;
+type GetPicturesFnType = (params?: QueryParams) => Promise<PictureDTO[]>;
 
 export const getPictures: GetPicturesFnType = async (params) => {
-  const pictures: PictureDTO | PictureDTO[] | undefined = await fetchData(
-    params,
-  );
+  const pictures: PictureDTO[] = await fetchData(params);
 
-  if (!pictures || (Array.isArray(pictures) && pictures.length < 1)) {
-    throw new Error('Error with fetching picture data');
-  }
-
-  return !Array.isArray(pictures) ? [pictures] : pictures;
+  return pictures.map((p) => convertPictureDTOToEntity(p)) ?? [];
 };
 
 type QueryFnType = typeof getPictures;
@@ -31,15 +19,9 @@ type UseGetPicturesOptions = {
   params?: QueryParams;
 };
 
-export const useGetPictures = ({ params }: UseGetPicturesOptions) => {
-  const paramsArray: QueryParamsKeysArray | undefined = paramsToArray(params);
-  const queryKey: PicturesQueryKeyEnum = getQueryKey(
-    paramsArray,
-    params?.count,
-  );
-
+export const useGetPictures = ({ params }: UseGetPicturesOptions = {}) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
-    queryKey: [queryKey],
+    queryKey: ['pictures'],
     queryFn: () => getPictures(params),
   });
 };
