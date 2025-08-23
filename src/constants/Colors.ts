@@ -43,6 +43,7 @@ export default {
     surfaceDisabled: 'rgba(27, 27, 31, 0.12)',
     onSurfaceDisabled: 'rgba(27, 27, 31, 0.38)',
     backdrop: 'rgba(47, 48, 56, 0.4)',
+    boxShadowSm: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   },
 
   dark: {
@@ -89,11 +90,11 @@ export default {
     surfaceDisabled: 'rgba(228, 225, 230, 0.12)',
     onSurfaceDisabled: 'rgba(228, 225, 230, 0.38)',
     backdrop: 'rgba(47, 48, 56, 0.4)',
+    boxShadowSm: '0 1px 4px 0 rgba(255, 255, 255, 0.7)',
   },
 
   common: {
     black: 'rgb(0,0,0)',
     white: 'rgb(255, 251, 255)',
-    boxShadowSm: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   },
 };

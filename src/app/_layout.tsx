@@ -5,7 +5,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { PaperProvider, Text } from 'react-native-paper';
+import { PaperProvider } from 'react-native-paper';
 import { fonts as fontConfig } from '@/src/config/theme/fonts';
 import {
   CombinedDarkTheme,
@@ -14,16 +14,13 @@ import {
 import '@/src/config/i18n';
 import { isDarkMode } from '@/src/utils/theme.utils';
 import { useGetTheme } from '@/src/hooks/useGetTheme';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/src/api/tanstackQuery';
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -66,7 +63,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const { colorScheme, theme } = useGetTheme();
+  const { colorScheme } = useGetTheme();
   const paperTheme = isDarkMode(colorScheme)
     ? CombinedDarkTheme
     : CombinedLightTheme;
@@ -74,20 +71,11 @@ function RootLayoutNav() {
   return (
     <PaperProvider theme={{ ...paperTheme, fonts: fontConfig }}>
       <ThemeProvider value={paperTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="modal"
-            options={{
-              title: 'Modal',
-              presentation: 'modal',
-              headerTitle: () => <Text variant="titleLarge">Modal</Text>,
-              headerStyle: {
-                backgroundColor: theme.secondaryContainer,
-              },
-            }}
-          />
-        </Stack>
+        <QueryClientProvider client={queryClient}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </QueryClientProvider>
       </ThemeProvider>
     </PaperProvider>
   );
