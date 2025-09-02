@@ -24,7 +24,10 @@ export default function DailyPictureSection() {
   return (
     <>
       <View style={[styles.container, dailyPictureSectionContainerStyle]}>
-        <DailyPictureSectionHeader title={t('title')} />
+        <DailyPictureSectionHeader
+          title={t('title')}
+          imageUrl={todaysPictureData?.hdurl ?? todaysPictureData?.url}
+        />
         <DailyPictureCard
           title={todaysPictureData?.title}
           date={todaysPictureData?.date}

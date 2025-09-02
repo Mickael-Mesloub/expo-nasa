@@ -1,42 +1,21 @@
+import ShareIconButton from '@/src/components/HomeScreen/DailyPictureSection/IconButton/ShareIconButton';
 import Spacings from '@/src/constants/Spacings';
-import { useGetTheme } from '@/src/hooks/useGetTheme';
-import { Alert, StyleSheet, View } from 'react-native';
-import { IconButton, Text } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 interface DailyPictureSectionHeaderProps {
   title: string;
+  imageUrl: string;
 }
 
 export default function DailyPictureSectionHeader({
   title,
+  imageUrl,
 }: DailyPictureSectionHeaderProps) {
-  const { theme } = useGetTheme();
-  const iconColor: string = theme.primary;
-  const iconContainerColor: string = theme.primaryContainer;
-  const iconBoxShadow: string = theme.boxShadowSm;
-
-  // TODO: add sharing feature when Share icon button is pressed
-  const share = () =>
-    Alert.alert("Share today's picture", 'Check this out!', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      { text: 'OK', onPress: () => console.log('OK Pressed') },
-    ]);
-
   return (
     <View style={styles.container}>
       <Text variant="headlineMedium">{title}</Text>
-      <IconButton
-        icon="share-variant-outline"
-        size={20}
-        iconColor={iconColor}
-        containerColor={iconContainerColor}
-        onPress={share}
-        style={{ boxShadow: iconBoxShadow }}
-      />
+      <ShareIconButton url={imageUrl} />
     </View>
   );
 }
