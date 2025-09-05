@@ -2,8 +2,8 @@ import Spacings from '@/src/constants/Spacings';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { useGetTheme } from '@/src/hooks/useGetTheme';
-import DailyPictureSectionHeader from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureSectionHeader';
-import DailyPictureCard from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureCard';
+import DailyPictureSectionHeader from '@/src/screens/HomeScreen/DailyPictureSection/DailyPictureSectionHeader';
+import DailyPictureCard from '@/src/screens/HomeScreen/DailyPictureSection/DailyPictureCard';
 import FullScreenLoader from '@/src/components/FullScreenLoader';
 import { useGetTodaysPicture } from '@/src/api/getTodaysPicture';
 

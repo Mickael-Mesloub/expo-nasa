@@ -1,4 +1,4 @@
-import ShareIconButton from '@/src/components/HomeScreen/DailyPictureSection/IconButton/ShareIconButton';
+import ShareIconButton from '@/src/components/IconButton/ShareIconButton';
 import Spacings from '@/src/constants/Spacings';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';

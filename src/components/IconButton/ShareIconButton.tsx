@@ -21,7 +21,7 @@ export default function ShareIconButton({ url }: ShareIconButtonProps) {
     } catch (error) {
       // INFO - Catch block is triggered even if user shared successfully
       // => when go-back buttons are pressed to come back in the app after sharing, it is considered as cancellation.
-      console.error('Error =>', error);
+      console.warn('Error during share =>', error);
     }
   };
 
