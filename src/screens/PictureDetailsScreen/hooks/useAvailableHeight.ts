@@ -11,13 +11,10 @@ export const useAvailableHeight = () => {
   const { height: windowHeight } = useWindowDimensions();
   const headerHeight = useHeaderHeight();
 
-  const onLayout = useCallback(
-    (event: LayoutChangeEvent) => {
-      const { y } = event.nativeEvent.layout;
-      setAvailableHeight(windowHeight - headerHeight - y);
-    },
-    [windowHeight, headerHeight],
-  );
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
+    const { y } = event.nativeEvent.layout;
+    setAvailableHeight(windowHeight - headerHeight - y);
+  }, []);
 
   return {
     availableHeight,
