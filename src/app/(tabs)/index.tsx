@@ -1,46 +1,5 @@
-import {
-  ColorSchemeName,
-  StyleSheet,
-  useColorScheme,
-  View,
-} from 'react-native';
-import { EdgeInsets, SafeAreaView } from 'react-native-safe-area-context';
-import logoDark from '@/src/assets/icons/splash-icon-dark.png';
-import logoLight from '@/src/assets/icons/splash-icon-light.png';
-import { isDarkMode } from '@/src/utils/theme.utils';
-import { Image } from 'expo-image';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import DailyPictureSection from '@/src/components/HomeScreen/DailyPictureSection/DailyPictureSection';
+import HomeScreen from '@/src/screens/HomeScreen/HomeScreen';
 
 export default function Index() {
-  const { top }: EdgeInsets = useSafeAreaInsets();
-  const colorScheme: ColorSchemeName = useColorScheme();
-  const logoSource: string = isDarkMode(colorScheme)
-    ? (logoLight as string)
-    : (logoDark as string);
-
-  return (
-    <SafeAreaView style={[styles.container, { paddingTop: top }]}>
-      <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={logoSource} />
-      </View>
-      <DailyPictureSection />
-    </SafeAreaView>
-  );
+  return <HomeScreen />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  logoContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  logo: {
-    width: 100,
-    height: 100,
-  },
-});

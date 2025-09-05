@@ -17,5 +17,4 @@ export type Picture = {
 
 export const convertPictureDTOToEntity = (dto: PictureDTO): Picture => ({
   ...dto,
-  date: new Date(dto.date).toLocaleDateString(),
 });

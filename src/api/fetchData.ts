@@ -10,7 +10,7 @@ export async function fetchData<T>(params?: QueryParams): Promise<T> {
         Object.entries(params).map(([k, v]) => [k, String(v)]),
       ).toString()
     : '';
-  const url = `${API_BASE_URL}?api_key=${API_KEY}${searchParams}`;
+  const url = `${API_BASE_URL}?api_key=${API_KEY}&${searchParams}`;
 
   const response = await fetch(url);
 
