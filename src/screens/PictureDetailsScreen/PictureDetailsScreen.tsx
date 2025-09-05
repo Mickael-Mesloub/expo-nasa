@@ -5,10 +5,11 @@ import { PictureDetailsScreenParams } from '@/src/@types/navigation.types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PictureDetailsView from '@/src/screens/PictureDetailsScreen/PictureDetailsView';
 import { useGetDailyPicture } from '@/src/api/getDailyPicture';
+import FullScreenLoader from '@/src/components/FullScreenLoader';
 
 export default function PictureDetailsScreen() {
   const { date } = useLocalSearchParams<PictureDetailsScreenParams>();
-  const { data: pictureDetails } = useGetDailyPicture({
+  const { data: pictureDetails, isPending } = useGetDailyPicture({
     date,
   });
   const navigation = useNavigation();
@@ -24,6 +25,7 @@ export default function PictureDetailsScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <PictureDetailsView pictureDetails={pictureDetails} />
+      <FullScreenLoader isLoading={isPending} />
     </SafeAreaView>
   );
 }
