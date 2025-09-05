@@ -12,7 +12,7 @@ export default function DailyPictureSection() {
     keyPrefix: 'Screens.HomeScreen.dailyPictureSection',
   });
   const { theme } = useGetTheme();
-  const { data: todaysPictureData, isFetching } = useGetTodaysPicture();
+  const { data: todaysPictureData, isPending } = useGetTodaysPicture();
 
   const dailyPictureSectionContainerStyle: ViewStyle = {
     boxShadow: theme.boxShadowSm,
@@ -34,7 +34,7 @@ export default function DailyPictureSection() {
           imageUrl={todaysPictureData?.hdurl ?? todaysPictureData?.url}
         />
       </View>
-      <FullScreenLoader isLoading={isFetching} />
+      <FullScreenLoader isLoading={isPending} />
     </>
   );
 }
