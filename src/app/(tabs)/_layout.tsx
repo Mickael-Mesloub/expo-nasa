@@ -51,13 +51,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="gallery"
         options={{
           title: t('BottomTabBar.tabTwo'),
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="folder-image" color={color} />
           ),
-          headerTitle: () => <Text variant="titleLarge">Tab Two</Text>,
         }}
       />
     </Tabs>
